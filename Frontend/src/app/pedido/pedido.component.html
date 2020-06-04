@@ -1,0 +1,81 @@
+<body>
+<div class="container">
+  <form #pedidoForm="ngForm" (ngSubmit)="Submit(pedidoForm)">
+
+    <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="pedidoService.selectedPedido._id">
+        <div>
+        <mat-form-field>
+        <mat-label>Nome : </mat-label> 
+        <input matInput type="text" name="nomeCompleto" #name="ngModel" [(ngModel)]="pedidoService.selectedPedido.nomeCompleto"
+          placeholder="Introduza o nome" required>
+        </mat-form-field>
+      </div>
+      <div>
+      <mat-form-field>
+        <mat-label>Idade: :</mat-label>
+        <input matInput type="text" name="idade" pattern="^[0-9]{1,2}" #name="ngModel" [(ngModel)]="pedidoService.selectedPedido.idade"
+          placeholder="Ensira aa sua idade" required>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+        <mat-label>Cidade :</mat-label>
+        <input matInput type="text" name="cidade" #name="ngModel" [(ngModel)]="pedidoService.selectedPedido.cidade"
+          placeholder="ex: rua Dr. Adelino" required>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+        <mat-label>Sintomas :</mat-label>
+        <input matInput type="text" name="sintomas" #name="ngModel" [(ngModel)]="pedidoService.selectedPedido.sintomas"
+          placeholder="sintomas" required>
+        </mat-form-field>
+      </div>
+      <div class="input form">
+        <label>Encaminha pela saude 24</label>
+        <input type="checkbox" name="encaminhado" #name="ngModel"
+          [(ngModel)]="pedidoService.selectedPedido.encaminhado">
+      </div>
+      <div class="input form">
+      <label>Grupo de risco</label>
+        <input type="checkbox" name="grupo" #name="ngModel" [(ngModel)]="pedidoService.selectedPedido.grupo">
+      </div>
+      <div class="input form">
+        <label>Trabalha num local de risco</label>
+        <input type="checkbox" name="tLocalRisco" #name="ngModel" [(ngModel)]="pedidoService.selectedPedido.tLocalRisco">
+      </div>
+      <div class="input form">
+        <button mat-raised-button  class="ResetButton" type="button" (click)="resetForm(pedidoForm)">Reset</button>
+        <button mat-raised-button  class="SubmitButton" type="submit" [disabled]="!pedidoForm.valid">Submit</button>
+      </div>
+  </form>
+
+  <div class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Idade</th>
+          <th>Cidade</th>
+          <th>Sintomas</th>
+          <th>Grupo de risco</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr class="list-item"*ngFor="let ped of pedidoService.pedidos" [hidden]="ped.user != null">
+        <td>{{ped.nomeCompleto}}</td>
+        <td>{{ped.idade}}</td>
+        <td>{{ped.cidade}}</td>
+        <td>{{ped.sintomas}}</td>
+        <td>{{ped.grupo}}</td>
+        <td>
+          <button mat-raised-button  class="DeleteButton" type="button" (click)="Delete(ped._id,pedidoForm)">Eliminar</button>
+          <button mat-raised-button  class="EditButton" type="button" (click)="Edit(ped)">Editar</button>
+        </td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  </div>
+</body>

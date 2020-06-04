@@ -1,0 +1,48 @@
+<body>
+
+  <div class="registo-container">
+<form #registroForm="ngForm" (ngSubmit)="Submit(registroForm)">
+  <img src="assets/images/avatar2.png">
+  <h2>Registo</h2>
+  <small class="error">{{ error }}</small>
+  <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="userService.selectedUser._id">
+  <div>
+    <mat-form-field>
+      <mat-label>Nome : </mat-label>
+      <input matInput type="text" name="nome" #name="ngModel" [(ngModel)]="userService.selectedUser.nome"
+        placeholder="Introduza o nome" required>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Email : <span style="color: red">&nbsp;*</span></mat-label>
+      <input matInput type="text" name="email" #name="ngModel" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="userService.selectedUser.email"
+        placeholder="Introduza o emal" required>
+        <mat-error >Email invalido</mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Password : <span style="color: red">&nbsp;*</span></mat-label>
+      <input matInput type="text" name="password" #name="ngModel" pattern="^[a-z0-9._%+-]{8,30}" [(ngModel)]="userService.selectedUser.password"
+        placeholder="Introduza a password" required>
+        <mat-error >Entre 8 a 30 carateres</mat-error>
+    </mat-form-field>
+  </div>
+<mat-form-field>
+  <mat-label for="role">Escolha uma role</mat-label>
+  <mat-select id="role" name="role" #name="ngModel" [(ngModel)]="userService.selectedUser.role" required>
+    <mat-option>None</mat-option>
+    <mat-option value="Admin">Admin</mat-option>
+    <mat-option value="Tecnico">Tecnico</mat-option>
+    <mat-option value="Normal">Normal</mat-option>
+    <mat-option value="Doutor">Doutor</mat-option>
+  </mat-select>
+</mat-form-field>
+  <div>
+    <button mat-raised-button class="SubmitButton" type="submit" [disabled]="!registroForm.valid">Submit</button>
+  </div>
+</form>
+</div>
+  
+</body>

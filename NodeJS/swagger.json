@@ -1,0 +1,430 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Aplicação web que permita registar pedidos de diagnóstico de covid19, processar o pedido e agendar o teste",
+        "version": "1.0.0",
+        "title": "Api_Projeto_PAW"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "pedido",
+            "description": "registar e processar  pedidos"
+        },
+        {
+            "name": "user",
+            "description": "gerir users e fazer login"
+        },
+        {
+            "name": "agendamento",
+            "description": "associar pedidos a um utilizador"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/pedido": {
+            "get": {
+                "tags": [
+                    "pedido"
+                ],
+                "description": "Listar todos os pedido ordenados por grupo de risco",
+                "responses": {
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    },
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "$ref": "#definitions/Pedido"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "pedido"
+                ],
+                "description": "Criar um pedido",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Pedido que vai ser criado",
+                        "schema": {
+                            "$ref": "#definitions/Pedido"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "created",
+                        "schema": {
+                            "$ref": "#definitions/Pedido"
+                        }
+                    },
+                    "400": {
+                        "description": "bad request"
+                    }
+                }
+            }
+        },
+        "/pedido/find/{_id}": {
+            "put": {
+                "tags": [
+                    "pedido"
+                ],
+                "description": "Update pedido por id",
+                "parameters": [
+                    {
+                        "name": "_id",
+                        "in": "path",
+                        "description": "ID do pedido a encontrar",
+                        "schema": {
+                            "$ref": "#definitions/Pedido"
+                        }
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Pedido que vai ser criado",
+                        "schema": {
+                            "$ref": "#definitions/Pedido"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "pedido"
+                ],
+                "description": "Delete pedido por id",
+                "parameters": [
+                    {
+                        "name": "_id",
+                        "in": "path",
+                        "description": "ID do pedido a encontrar",
+                        "schema": {
+                            "$ref": "#definitions/Pedido"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "pedido"
+                ],
+                "description": "Encontrar pedido por id",
+                "parameters": [
+                    {
+                        "name": "_id",
+                        "in": "path",
+                        "description": "ID do produto a encontrar",
+                        "schema": {
+                            "$ref": "#definitions/Pedido"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "$ref": "#definitions/Pedido"
+                        }
+                    }
+                }
+            }
+        },
+                "/pedido//estatisticas": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "description": "listar pedidos completos por utilizador e toltal diario ou mensal",
+                "responses": {
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    },
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "$ref": "#definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/agendamento/{_id}": {
+            "put": {
+                "tags": [
+                    "agendamento"
+                ],
+                "description": "Encontrar user por id , editar pedido, associar pedido ao user",
+                "parameters": [
+                    {
+                        "name": "_id",
+                        "in": "path",
+                        "description": "ID do pedido a encontrar",
+                        "schema": {
+                            "$ref": "#definitions/Pedido"
+                        }
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "User que vai ser associado",
+                        "schema": {
+                            "$ref": "#definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "bad request"
+                    }
+                }
+            }
+        },
+        "/user/registo": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "description": "Registar um user",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "User que vai ser criado",
+                        "schema": {
+                            "$ref": "#definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "created",
+                        "schema": {
+                            "$ref": "#definitions/User"
+                        }
+                    },
+                    "400": {
+                        "description": "bad request"
+                    }
+                }
+            }
+        },
+        "/user": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "description": "Listar todos os users",
+                "responses": {
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    },
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "$ref": "#definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/login": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "description": "Autenticar user",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Nome e passowrd",
+                        "schema": {
+                            "$ref": "#definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    },
+                    "400": {
+                        "description": "bad request"
+                    }
+                }
+            }
+        },
+        "/user/{_id}": {
+            "put": {
+                "tags": [
+                    "user"
+                ],
+                "description": "Update user por id",
+                "parameters": [
+                    {
+                        "name": "_id",
+                        "in": "path",
+                        "description": "ID do user a encontrar",
+                        "schema": {
+                            "$ref": "#definitions/User"
+                        }
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "User que vai ser criado",
+                        "schema": {
+                            "$ref": "#definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "bad request"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "user"
+                ],
+                "description": "Delete user por id",
+                "parameters": [
+                    {
+                        "name": "_id",
+                        "in": "path",
+                        "description": "ID do user a encontrar",
+                        "schema": {
+                            "$ref": "#definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Erro interno do servidor"
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "/user/perfil": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "description": "Delete user por id",
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "$ref": "#definitions/User"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Pedido": {
+            "required": [
+                "nomeCompleto",
+                "idade",
+                "sintomas",
+                "encaminhado",
+                "grupo",
+                "tLocalRisco"
+            ],
+            "properties": {
+                "_id":{
+                    "type": "string", 
+                    "uniqueItems": true},
+
+                "nomeCompleto": {
+                    "type": "string"
+                },
+                "idade": {
+                    "type": "number"
+                },
+                " cidade": {
+                    "type": "string"
+                },
+                "sintomas": {
+                    "type": "string"
+                },
+                "encaminhado": {
+                    "type": "boolean"
+                },
+                "grupo": {
+                    "type": "boolean"
+                },
+                "tLocalRisco": {
+                    "type": "boolean"
+                },
+                "inicio": {
+                    "type":"string",
+                    "format": "date"
+                },
+                "fim": {
+                    "type":"string",
+                    "format": "date"
+                },
+                "user": { 
+                    "type":"object"
+                }
+            }
+        },
+        "User":{
+            "required": [
+                "nome",
+                "email",
+                "password",
+                "role"
+            ],
+            "properties": {
+                "nome": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                },
+                "pedido": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

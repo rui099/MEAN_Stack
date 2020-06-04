@@ -1,0 +1,13 @@
+.navbar {
+    justify-content: space-between;
+}
+
+.mat-toolbar.mat-primary {
+    background: rgb(136, 174, 231);
+    color: #fff;
+  }
+  
+  .home{
+    text-decoration: none;
+    color:white;
+  }

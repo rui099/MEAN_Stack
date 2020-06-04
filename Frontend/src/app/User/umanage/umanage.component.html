@@ -1,0 +1,67 @@
+<body>
+<div class="container">
+  <form #editForm="ngForm" (ngSubmit)="Submit(editForm)">
+
+    <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="userService.selectedUser._id">
+      <div class="input form">
+        <mat-form-field>
+        <mat-label>Nome : </mat-label>
+        <input matInput type="text" name="nome" #name="ngModel" [(ngModel)]="userService.selectedUser.nome"
+          placeholder="Introduza o nome" required>
+        </mat-form-field>
+        </div>
+      <div class="input form">
+      <mat-form-field>
+        <mat-label>email :</mat-label>
+        <input matInput type="text" name="email" #name="ngModel" [(ngModel)]="userService.selectedUser.email"
+          placeholder="----@---" required>
+        </mat-form-field>
+      </div>
+      <div class="input form">
+        <mat-form-field>
+          <mat-label>Password : </mat-label>
+          <input matInput type="text" id ="password" name="password" #name="ngModel"  pattern="^[a-z0-9._%+-]{8,30}" [(ngModel)]="userService.selectedUser.password"
+            placeholder="Introduza a password" required>
+            <mat-error >Entre 8 a 30 carateres</mat-error><br>
+        </mat-form-field>
+      </div>
+      <mat-form-field>
+        <mat-label for="role">Role</mat-label>
+        <mat-select id="role" name="role" #name="ngModel" [(ngModel)]="userService.selectedUser.role">
+          <mat-option>None</mat-option>
+          <mat-option value="Admin">Admin</mat-option>
+          <mat-option value="Tecnico">Tecnico</mat-option>
+          <mat-option value="Normal">Normal</mat-option>
+          <mat-option value="Doutor">Doutor</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="input form">
+        <button mat-raised-button type="button" (click)="resetForm(editForm)">Reset</button>
+        <button mat-raised-button type="submit" [disabled]="!editForm.valid">Submit</button>
+      </div>
+  </form>
+
+  <div class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>email</th>
+          <th>role</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tr *ngFor="let ped of userService.users">
+        <td>{{ped.nome}}</td>
+        <td>{{ped.email}}</td>
+        <td>{{ped.role}}</td>
+        <td>
+          <button mat-raised-button type="button" (click)="Delete(ped._id,editForm)">Eliminar</button>
+          <button mat-raised-button type="button" (click)="Edit(ped)">Editar</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  </div>
+</body>

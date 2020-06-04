@@ -1,0 +1,23 @@
+body {
+    display : flex;
+    height: 100%;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    position : static;
+    background-image: url('src/assets/images/covidFight.jpg') ;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  h1{
+    color: white;
+    font-family: 'Patua One', cursive;
+    font-size: 50px;
+    padding-left: 20px;
+    padding-top: 25px;
+  }
+a{
+  padding-top: 50%;
+
+}

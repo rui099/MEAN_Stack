@@ -1,0 +1,13 @@
+<mat-toolbar color="primary" class ="navbar" *ngIf="userService.loggedIn() == true">
+    <div><a class="home" routerLink="/">Testes Covid19</a></div>
+    <div>
+        <a mat-button  *ngIf="user.role != Doutor" routerLink  ="pedido">Pedidos</a>
+        <a mat-button *ngIf="user.role == Tecnico || user.role == Admin"routerLink ="agendamento">Agendar</a>
+        <a mat-button *ngIf="user.role == Admin"routerLink ="user">Users</a>
+        <a mat-button *ngIf="user.role != Doutor"routerLink ="user/perfil">Perfil</a>
+        <a mat-button *ngIf="user.role == Doutor"routerLink ="user/perfil">Agenda</a>
+        <a mat-button *ngIf="user.role == Admin" routerLink ="user/registo">Registar</a>
+        <button mat-raised-button (click)="onLogout()">Sair</button>
+    </div>
+    
+</mat-toolbar>

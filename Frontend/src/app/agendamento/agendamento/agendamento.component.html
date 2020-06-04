@@ -1,0 +1,95 @@
+<body>
+  
+
+<div class="container">
+<form #pedidoForm="ngForm" (ngSubmit)="Submit(pedidoForm)">
+
+    <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="pedidoService.selectedPedido._id">
+    <input type="hidden" name="idade" #_id="ngModel" [(ngModel)]="pedidoService.selectedPedido.idade">
+    <input type="hidden" name="cidade" #_id="ngModel" [(ngModel)]="pedidoService.selectedPedido.cidade">
+    <input type="hidden" name="sintomas" #_id="ngModel" [(ngModel)]="pedidoService.selectedPedido.sintomas">
+    <input type="hidden" name="encaminhado" #_id="ngModel" [(ngModel)]="pedidoService.selectedPedido.encaminhado">
+    <input type="hidden" name="grupo" #_id="ngModel" [(ngModel)]="pedidoService.selectedPedido.grupo">
+    <input type="hidden" name="tLocalRisco" #_id="ngModel" [(ngModel)]="pedidoService.selectedPedido.tLocalRisco">
+      <div class="input form">
+        <mat-form-field>
+        <mat-label>Escolha um pedido : <span style="color: red">&nbsp;*</span></mat-label>
+        <input matInput type="text" readonly="readonly" name="nomeCompleto" #name="ngModel" [(ngModel)]="pedidoService.selectedPedido.nomeCompleto"
+          placeholder="Introduza o nome"  required>
+          <mat-error >Escolha um peddo</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="input form">
+        <mat-form-field>
+        <mat-label>Inicio :</mat-label>
+        <input matInput type="datetime-local" min="2020-05-07T00:00" name="inicio" #name="ngModel" [(ngModel)]="pedidoService.selectedPedido.inicio"
+            required>
+          </mat-form-field>
+      </div>
+      <div class="input form">
+        <mat-form-field>
+        <mat-label>Fim :</mat-label>
+        <input matInput type="datetime-local" min="2020-05-07T00:00" name="fim" #name="ngModel" [(ngModel)]="pedidoService.selectedPedido.fim"
+             required>
+          </mat-form-field>
+      </div>
+      <div class="input form">
+        <mat-form-field>
+        <mat-label>Escolha um user :<span style="color: red">&nbsp;*</span></mat-label>
+        <input matInput type="text" readonly="readonly" name="user" #name="ngModel" [(ngModel)]="pedidoService.selectedPedido.user" placeholder=""
+        required>
+        <mat-error >Escolha um user</mat-error>
+      </mat-form-field>
+      </div>
+      <div class="input form">
+        <button mat-raised-button  class="ResetButton" type="button" (click)="resetForm(pedidoForm)">Reset</button>
+        <button mat-raised-button  class="SubmitButton" type="submit" [disabled]="!pedidoForm.valid">Submit</button>
+      </div>
+  </form>
+  <div class="table-container">
+<table class="tablePedido">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Cidade</th>
+            <th>Sintomas</th>
+            <th>Grupo de risco</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tr *ngFor="let ped of pedidoService.pedidos"[hidden]="ped.user != null" >
+        <td>{{ped.nomeCompleto}}</td>
+        <td>{{ped.idade}}</td>
+        <td>{{ped.cidade}}</td>
+        <td>{{ped.sintomas}}</td>
+        <td>{{ped.grupo}}</td>
+        <td>
+          <button mat-raised-button  class="EditButton" type="button" (click)="selectPedido(ped)">Selecionar</button>
+        </td>
+    </tr>
+</table>
+</div>
+
+
+<div class="table-container">
+<table class="tableUser">
+  <thead>
+      <tr>
+        <th>nome</th>
+        <th>email</th>
+        <th>role</th>
+      </tr>
+  </thead>
+  <tr *ngFor="let user of userService.users"  [hidden]=" user.role != Doutor" >
+    <td>{{user.nome}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.role}}</td>
+    <td>
+      <button mat-raised-button  class="EditButton" type="button" (click)="selectUser(user)">Selecionar</button>
+    </td>
+  </tr>
+</table>
+</div>
+</div>
+</body>

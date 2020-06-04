@@ -1,0 +1,23 @@
+<body>
+  <div class="login-container">
+<form #loginForm="ngForm"  (ngSubmit)="Submit(loginForm)">
+  <img src="assets/images/avatar2.png">
+  <h2>Login</h2>
+  <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="userService.selectedUser._id">
+  <small class="error" >{{ error }}</small>
+  <div class="input">
+    <mat-form-field>
+  <mat-label>Nome : </mat-label>
+    <input matInput type="text" name ="nome"#name="ngModel" [(ngModel)]="userService.selectedUser.nome" required>
+  </mat-form-field>
+</div>
+    <div class="input">
+      <mat-form-field >
+    <mat-label color="accent">Password : </mat-label>
+    <input matInput type="password" name ="password" #name="ngModel" [(ngModel)]="userService.selectedUser.password"  required>
+  </mat-form-field>
+</div>
+    <button mat-raised-button class="SubmitButton" type="submit" [disabled]="!loginForm.valid">Submit</button>
+  </form>
+</div>
+</body>

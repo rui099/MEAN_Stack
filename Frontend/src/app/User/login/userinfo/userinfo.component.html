@@ -1,0 +1,94 @@
+<body>
+<div class="container">
+<form *ngIf="user">
+    <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="user._id">
+    <div>
+        <mat-form-field>
+            <label>Nome : </label>
+            <input matInput type="text" name="nome" #name="ngModel" [(ngModel)]="user.nome" disabled>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <label>Email : </label>
+            <input matInput type="text" name="email" #name="ngModel" [(ngModel)]="user.email" disabled>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <label>Role : </label>
+            <input matInput type="text" name="role" #name="ngModel" [(ngModel)]="user.role" disabled>
+        </mat-form-field>
+    </div>
+</form>
+</div>
+
+<div class="table-container">
+<table class="tableUser"*ngIf="user.role == Doutor">
+    <thead>
+        <tr>
+          <th>nome</th>
+          <th>inicio</th>
+          <th>fim</th>
+        </tr>
+    </thead>
+    <tr *ngFor="let ped of user.pedidos" [hidden]="ped.resultado != Completo">
+      <td>{{ped.nomeCompleto}}</td>
+      <td>{{ped.inicio}}</td>
+      <td>{{ped.fim}}</td>
+      <td>
+        <button mat-raised-button  class="EditButton" type="button" (click)="selectPedido(ped)">Selecionar</button>
+      </td>
+    </tr>
+  </table>
+</div>
+
+  <div class="container">
+<form #pedidoForm="ngForm" (ngSubmit)="Submit(pedidoForm)"*ngIf="user.role == Doutor">
+<h2>Resultado</h2>
+    <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="pedidoService.selectedPedido._id">
+    <input type="hidden" name="idade" #_id="ngModel" [(ngModel)]="pedidoService.selectedPedido.idade">
+    <input type="hidden" name="cidade" #_id="ngModel" [(ngModel)]="pedidoService.selectedPedido.cidade">
+    <input type="hidden" name="sintomas" #_id="ngModel" [(ngModel)]="pedidoService.selectedPedido.sintomas">
+    <input type="hidden" name="encaminhado" #_id="ngModel" [(ngModel)]="pedidoService.selectedPedido.encaminhado">
+    <input type="hidden" name="grupo" #_id="ngModel" [(ngModel)]="pedidoService.selectedPedido.grupo">
+    <input type="hidden" name="tLocalRisco" #_id="ngModel" [(ngModel)]="pedidoService.selectedPedido.tLocalRisco">
+    <input type="hidden" name="inicio" #name="ngModel" [(ngModel)]="pedidoService.selectedPedido.inicio">
+    <input type="hidden" name="fim" #name="ngModel" [(ngModel)]="pedidoService.selectedPedido.fim">
+    <input type="hidden" name="user" #name="ngModel" [(ngModel)]="pedidoService.selectedPedido.user">
+    <input type="hidden" name="estado" #name="ngModel" [(ngModel)]="pedidoService.selectedPedido.estado">
+      <div class="input form">
+        <mat-form-field>
+        <mat-label>Nome : </mat-label>
+        <input matInput type="text" readonly="readonly" name="nomeCompleto" #name="ngModel" [(ngModel)]="pedidoService.selectedPedido.nomeCompleto"
+          placeholder="Introduza o nome"  required>
+        </mat-form-field>
+      </div>
+    
+    <mat-form-field>
+      <mat-label for="resultado">Resultado</mat-label>
+      <mat-select id="resultado" name="resultado" #name="ngModel" [(ngModel)]="pedidoService.selectedPedido.resultado" required>
+        <mat-option>None</mat-option>
+        <mat-option value="Positivo">Positivo</mat-option>
+        <mat-option value="Negativo">Negativo</mat-option>
+      </mat-select>
+    </mat-form-field>
+      
+   
+      <div class="input form">
+        <button mat-raised-button  class="ResetButton" type="button" (click)="resetForm(pedidoForm)">Reset</button>
+        <button mat-raised-button  class="SubmitButton" type="submit" [disabled]="!pedidoForm.valid">Submit</button>
+      </div>
+  </form>
+</div>
+<div class="estatisticas-container">
+<div class="estatisticas" *ngIf="user.role == Admin">
+  <h4>Número de testes feitos hoje - {{estatisticas.feitoHoje}}</h4>
+  <h4>Número de positivos - {{estatisticas.feitoHojePositivo}}</h4><br>
+  <h3>Número de testes neste mês - {{estatisticas.feitoEsteMes}}</h3>
+  <h3>Número de testes positivos - {{estatisticas.feitoHojePositivo}}</h3>
+</div>
+</div>
+   
+</body>
+

@@ -1,0 +1,84 @@
+body {
+    display : flex;
+    height: 92%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+    position : static;
+    background-image: url('src/assets/images/background.jpg') ;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+.container, .estatisticas-container, .table-container{
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form{
+
+position:relative;
+max-width: 200px;
+padding: 40px 40px 40px ;  
+background: rgba(0,0,0,0.2) ;
+border-radius: 10px;
+color:#fff;
+box-shadow: 0 15px 25px rgba(0,0,0,0.3);
+margin-right: 10px;
+}
+
+.estatisticas{
+    position:relative;
+    width: 100%;
+    max-width: 250px;
+    padding: 40px 40px 40px ;  
+    background: rgba(0,0,0,0.3) ;
+    border-radius: 10px;
+    color:#fff;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.5);
+}
+
+::ng-deep.mat-form-field-underline {
+  
+    background-color: white !important;
+} 
+  
+
+::ng-deep .mat-focused .mat-form-field-label {
+    
+    color: white !important;
+   }
+  
+table,td{
+    position:relative;
+    background: rgba(0,0,0,0.3); 
+    max-width: 400x;
+    color:#fff;
+}
+
+
+
+table{
+    max-height: 300px;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    height: 400px;
+    display: inline-block;
+    box-sizing: border-box;
+    overflow-y: auto;
+    margin-right: 10px;
+    text-align:center; 
+}
+
+th {
+    position:relative;
+    background: rgba(0,0,0,0.3) ;
+    color:white;
+    position: sticky;
+    top: 0;
+    
+  }
