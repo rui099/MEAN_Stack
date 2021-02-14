@@ -7,7 +7,7 @@ mongoose.connect('mongodb+srv://Rui:123@cluster0-cwtph.mongodb.net/Cluster0?retr
     console.log('Conecctado ao Mongo ...');
     else
     console.log('Erro na conecção : ' + JSON.stringify(err, undefined, 2));
-})
+})//o codigo baixo foi copiado de um ficheiro que o professor Edgar disponibilizou
 .then(async (mongoose) => {
     const adminUser = await User.findOne({ role: 'Admin' }).select('+password')
     if (!adminUser) {

@@ -8,7 +8,7 @@ import { Pedido } from './models/pedido.model';
 export class PedidoService {
   selectedPedido: Pedido;
   pedidos:  Pedido[];
-  private baseURL = 'http://localhost:3000/pedido';
+  private baseURL = 'http://localhost:5000/pedido';
 
   constructor(private http: HttpClient) { }
 

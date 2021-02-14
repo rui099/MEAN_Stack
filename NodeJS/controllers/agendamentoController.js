@@ -4,11 +4,9 @@ var ObjectId = require("mongoose").Types.ObjectId;
 
 var { User } = require("../models/Users");
 var { Pedido } = require("../models/pedido");
-const authToken = require('../middleware/auth');
-const authRole = require('../middleware/authRole');
 
-router.put("/:id",authToken,authRole("Admin Tecnico"), async (req, res) => {
-
+const agendamento = async (req,res) =>{
+  
   if (!ObjectId.isValid(req.params.id))
   return res.status(400).send(`No record with given id : ${req.params.id}`);
 
@@ -36,9 +34,10 @@ Pedido.findByIdAndUpdate(req.params.id, { $set: ped }, { new: true }, (err, doc)
   }
   else{ console.log('Erro a editar: ' + JSON.stringify(err,undefined,2));} 
   })
-})
+}
 
 
 
-  module.exports = router;
+module.exports = {agendamento}
+
 

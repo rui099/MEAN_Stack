@@ -42,8 +42,11 @@ import { MaterialModule } from './material/material.module';
   ],
   providers: [
     {
-      provide: HTTP_INTERCEPTORS, useClass: TokenInterceptService, multi:true
-    }, AuthGuard
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptService,
+      multi:true
+    }, 
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

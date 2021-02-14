@@ -11,7 +11,7 @@ export class AgendamentoService {
 
 
 
-  private baseURL = 'http://localhost:3000';
+  private baseURL = 'http://localhost:5000';
   constructor(private http: HttpClient) { }
 
   putPedido(ped: Pedido) {

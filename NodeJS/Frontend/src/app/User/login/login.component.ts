@@ -38,19 +38,20 @@ export class LoginComponent implements OnInit {
     return this.userService.postUser('login', form.value).subscribe(
       res =>{
       this.userService.setToken(res['token']);
-      location.reload()
+      location.reload();
       this.resetForm();
     }, err =>{
       this.resetForm();
       this.error = "username ou password incorrreta";
         }
-
+        
   )};
 
 
   redirect(){
     if(this.userService.loggedIn() == true)
-    this.router.navigate(["/"]);
+    this.router.navigate(["/"])
+    
   }
   }
 

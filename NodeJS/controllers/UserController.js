@@ -5,7 +5,7 @@ var ObjectId = require("mongoose").Types.ObjectId;
 var { User } = require("../models/Users");
 var { Pedido } = require("../models/pedido");
 
-
+//criar user
   const registo = async (req, res) => {
   
     const salt = await bcrypt.genSalt();
@@ -29,7 +29,7 @@ var { Pedido } = require("../models/pedido");
 }
 
 
-
+//ver lista de users
   const userList = async (req, res) => {
   try {
     const user = await User.find();
@@ -40,7 +40,7 @@ var { Pedido } = require("../models/pedido");
 };
 
 
-
+  //autenticar user
   const login = async (req, res) => {
   const { nome, password } = req.body;
   let user = await User.findOne({ nome: nome });
@@ -74,7 +74,7 @@ var { Pedido } = require("../models/pedido");
   }
 };
 
-
+  //apagar user
   const deleteUser = async(req,res) =>{
   try {
     await res.user.remove();
@@ -100,7 +100,7 @@ async function getUser(req, res, next) {
 }
 
 
-
+  //receber user logado
   const userPerfil = async(req,res)=>{
   const header = req.headers.authorization;
 try{
@@ -118,7 +118,7 @@ try{
 };
 
 
-
+//fazer update ao user
 const userUpdate = async(req,res)=>{
   
   if (!ObjectId.isValid(req.params.id))

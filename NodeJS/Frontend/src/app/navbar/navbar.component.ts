@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
 
   isLoggedIn: Observable<boolean>;
   user:any
+  router: any;
   constructor(public userService: UserService) { }
   
   ngOnInit(){
@@ -29,7 +30,6 @@ Tecnico ="Tecnico"
 
   onLogout() {
     this.userService.logout();
-  
   }
 
 }

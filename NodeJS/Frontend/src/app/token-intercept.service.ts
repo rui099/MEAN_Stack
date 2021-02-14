@@ -18,6 +18,6 @@ intercept(req, next){
     }
   });
   return next.handle(tokenizedReq);
-}
   }
+}
 

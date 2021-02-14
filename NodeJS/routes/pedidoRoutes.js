@@ -10,6 +10,6 @@ pedidoRouter.get("/find/:id",authToken,authRole("Admin Normal Tecnico"),pedidoCo
 pedidoRouter.post("/",authToken,authRole("Admin Normal Tecnico"),pedidoController.pedidoCreat)
 pedidoRouter.put("/find/:id",authToken,authRole("Admin Normal Tecnico Doutor"),pedidoController.pedidoUpdate)
 pedidoRouter.delete("/find/:id",authToken,authRole("Admin Normal Tecnico"),pedidoController.getPedido, pedidoController.pedidoDelete)
-pedidoRouter.get("/estatisticas",authRole("Admin"),pedidoController.estatisticas)
+pedidoRouter.get("/estatisticas",authToken,authRole("Admin"),pedidoController.estatisticas)
 
 module.exports = pedidoRouter
